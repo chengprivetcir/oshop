@@ -1,3 +1,4 @@
+import { CategoryService } from './category.service';
 import { AdminAuthGuard as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { AuthGuard } from './auth-guard.service';
@@ -22,6 +23,7 @@ import {RouterModule} from '@angular/router';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { from } from 'rxjs';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { from } from 'rxjs';
     AdminProductsComponent,
     AdminOrdersComponent,
     BsNavbarComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,8 @@ import { from } from 'rxjs';
       {path:'order-success', component:OrderSuccessComponent,canActivate:[AuthGuard]},
      
       {path:'admin/products', component:AdminProductsComponent,canActivate:[AuthGuard,AdminAuthGuard]},
+      {path:'admin/products/new', component:ProductFormComponent,canActivate:[AuthGuard,AdminAuthGuard]},
+
       {path:'admin/orders', component:AdminOrdersComponent,canActivate:[AuthGuard,AdminAuthGuard]},
     ])
   ],
@@ -61,7 +66,8 @@ import { from } from 'rxjs';
     AuthService,
     AuthGuard,
     UserService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
