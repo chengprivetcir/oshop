@@ -1,5 +1,6 @@
 
-<a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+<p><a routerLink="/admin/products/new" class="btn btn-primary">New Product</a></p>
+<p><input type="text" (keyup)="filter(query.value)" #query class="form-control"></p>
 <table class="table">
     <thead>
         <tr>
@@ -9,9 +10,9 @@
         </tr>
     </thead>
     <tbody>
-     <tr *ngFor ="let p of products$ | async"> 
-        <td>{{p.payload.val().title}}</td>
-        <td>{{p.payload.val().price}}</td>
+     <tr *ngFor ="let p of filterProducts"> 
+        <td>{{p.title}}</td>
+        <td>{{p.price}}</td>
         <td>
             <a [routerLink]="['/admin/products',p.key]">Edit</a>
         </td>
